@@ -52,6 +52,7 @@ list.push(9);
 let list2 = new SinglyLinkList();
 list2.push(1);
 list2.push(2);
+list2.push(3);
 function mergeTwoSortedLinkList(list, list2){
     let newList = new SinglyLinkList();
     if(!list.head && !list2.head){
