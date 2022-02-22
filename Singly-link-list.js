@@ -25,6 +25,49 @@ class SinglyLinkList{
         return this;
     }
 
+    deleteDuplicateItem(){
+        if(!this.head) return this.head;
+        let prev = this.head;
+        let current = prev.next;
+        while(current){
+            if(prev.data === current.data){
+                current = current.next;
+                prev.next = current;
+                this.length--;
+            }else{
+            prev = current;    
+            current = current.next;
+            }
+        }
+
+        return this;
+    }
+
+    deleteAt(position){
+        let current = this.head;
+        let i = 0;
+        let prev = null;
+        let after = null;
+        if(i === 0){
+            this.head = current.next;
+            this.length--;
+            return current;
+        }
+
+        while(i <= position){
+           prev = current;
+           after = prev.next.next;
+           if(i === position){
+               prev.next = after;
+               return prev.data;
+           }
+           current = current.next;
+            i++;
+        }
+        this.length--;
+        return this;
+    }
+
   
 
     getNodefromTail(position){
@@ -43,11 +86,15 @@ class SinglyLinkList{
 }
 
 let list = new SinglyLinkList();
-list.push(1);
+list.push(2);
 list.push(3);
-list.push(7);
-list.push(8);
-list.push(9);
+list.push(3);
+list.push(3);
+list.push(3);
+list.push(4);
+list.push(5);
+list.push(5);
+list.push(5);
 //console.log(list);
 let list2 = new SinglyLinkList();
 list2.push(1);
@@ -81,3 +128,21 @@ function mergeTwoSortedLinkList(list, list2){
 }
 let list3 = mergeTwoSortedLinkList(list, list2);
 console.log(list3);
+function uniqueList(list){
+   let newList = new SinglyLinkList();
+   let current = list.head;
+   let after = current.next;
+   while(current && after){
+       if(current.data !== after.data){
+           newList.push(current.data);
+       }
+       if(!after.next){
+          newList.push(after.data);
+       }
+       current = current.next;
+       after = after.next;
+   }
+return newList;
+}
+let unique = uniqueList(list);
+console.log(unique);
