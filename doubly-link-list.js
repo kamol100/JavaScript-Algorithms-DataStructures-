@@ -26,6 +26,27 @@ class DoublyLinkList{
           this.length++;
           return this;
       }
+      reverse(){
+       if(!this.head || !this.head.next) return this.head;
+        let node = this.head;
+        this.head = this.tail;
+        this.tail = node;
+        let next = null;
+        let prev = null;
+        while(node){
+            next = node.next;
+            node.next = prev;
+            if(node === this.head){
+                node.prev = null;
+            }else{
+
+            node.prev = node;
+            }
+            prev = node;
+            node = next;
+        }
+        return this;
+      }
       insertAtSortedPosition(data){
           let current = this.head;
           let node = new Node(data);
@@ -68,6 +89,5 @@ dlist.push(1);
 dlist.push(2);
 dlist.push(3)
 dlist.push(4);
-dlist.push(10);
 console.log('dlist', dlist);
 
